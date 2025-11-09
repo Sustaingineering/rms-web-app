@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import "./globals.css";
+import ProgressBar from "@/components/ui/progressbar";
 
 export default function RootLayout({
   children,
@@ -10,6 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ProgressBar></ProgressBar>
         <div className="flex flex-col items-center pt-10">
             <Image
                 className="min-w-auto"
