@@ -17,15 +17,15 @@ const LoginForm: React.FC = () => {
     const {navigate} = useNavigation();
 
     //Variables
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     //Error
     const [hasError, setHasError] = useState(false);
 
     //Handlers
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value);
+    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUsername(e.target.value);
         setHasError(false);
     }
 
@@ -41,8 +41,8 @@ const LoginForm: React.FC = () => {
     }
 
     //Email
-    const clearEmail = () => {
-        setEmail("");
+    const clearUsername = () => {
+        setUsername("");
     }
 
     //Routing
@@ -54,10 +54,10 @@ const LoginForm: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        console.log(email, password)
+        console.log(username, password)
         
         if (
-            email == "" || 
+            username == "" || 
             password == ""
         ) {
             setHasError(true);
@@ -66,7 +66,7 @@ const LoginForm: React.FC = () => {
     }
 
     return (
-        <Card className = "mx-auto max-w-sm font-sans border-0">
+        <Card className = "mx-auto max-w-sm font-sans border-0 bg-white">
             <CardHeader className = "space-y-1">
                 <CardTitle className = "text-2xl font-bold flex justify-center">
                     Login
@@ -76,20 +76,20 @@ const LoginForm: React.FC = () => {
             <CardContent>
                 <div className = "space-y-4">
                     <div className = "space-y-2">
-                        <Label htmlFor="email" className="font-semibold">
-                            Email
+                        <Label htmlFor="username" className="font-semibold">
+                            Username
                         </Label>
                         <div className = "flex">
                             <Input 
                                 className="border-0"
-                                id = "email" 
-                                type="email" 
-                                placeholder="@example.com"
-                                value = {email}
-                                onChange={handleEmailChange}
+                                id = "username" 
+                                type="username" 
+                                placeholder="Input Username"
+                                value = {username}
+                                onChange={handleUsernameChange}
                                 required>
                             </Input>
-                            <Button variant = "ghost" size = "icon" onClick={clearEmail}>
+                            <Button variant = "ghost" size = "icon" onClick={clearUsername}>
                                 <Eraser></Eraser>
                             </Button>
                         </div>
@@ -129,10 +129,6 @@ const LoginForm: React.FC = () => {
                     >
                         Log in
                     </Button>
-
-                    <CardFooter className = "flex justify-center text-sm">
-                        <Button onClick = {routeSignup} variant = "link">Don't have an account? Sign up here</Button>
-                    </CardFooter>
                     
                 </div>
             </CardContent>
