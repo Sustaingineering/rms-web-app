@@ -45,12 +45,6 @@ const LoginForm: React.FC = () => {
         setUsername("");
     }
 
-    //Routing
-    const routeSignup = () => {
-        navigate("/signup")
-        return;
-    }
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
