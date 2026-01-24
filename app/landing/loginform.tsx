@@ -57,6 +57,42 @@ const LoginForm: React.FC = () => {
             setHasError(true);
             return;
         }
+
+        try {
+            const response = await fetch("/api/login", {
+                method : "POST",
+                headers : {
+                    "Content-Type": "application/json",
+                },
+                body : JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+
+            if (response.status === 404) { // user not found
+                console.log("username not found")
+                return;
+            }
+
+            if (response.status === 401) {
+                console.log("password is wrong")
+                return;
+            }
+
+            if (response.ok != true) {
+                console.log("random error idk")
+                return;
+            }
+
+            if (response.status === 200) {
+                console.log("You have been logged in and will be redirected")
+                return;
+            }
+        } catch (error) {
+            console.log("This is a random error part 2")
+            return;
+        }
     }
 
     return (
