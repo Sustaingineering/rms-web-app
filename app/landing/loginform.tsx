@@ -6,7 +6,8 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { EyeClosed, Eye, CircleCheck, CircleX, Eraser, } from "lucide-react";
+import { EyeClosed, Eye, CircleX, Eraser, } from "lucide-react";
+import toast from "react-hot-toast";
 
 //Navigation
 import { useNavigation } from "@/hooks/useNavigation";
@@ -59,6 +60,8 @@ const LoginForm: React.FC = () => {
         }
 
         try {
+            const toastId = toast.loading("Processing...")
+
             const response = await fetch("/api/login", {
                 method : "POST",
                 headers : {
@@ -71,22 +74,26 @@ const LoginForm: React.FC = () => {
             })
 
             if (response.status === 404) { // user not found
-                console.log("username not found")
+                toast.dismiss();
+                const toastId = toast.error("Username not found");
                 return;
             }
 
             if (response.status === 401) {
-                console.log("password is wrong")
+                toast.dismiss();
+                const toastId = toast.error("Wrong Password")
                 return;
             }
 
             if (response.ok != true) {
-                console.log("random error idk")
+                toast.dismiss();
+                const toastId = toast.error("Error")
                 return;
             }
 
             if (response.status === 200) {
-                console.log("You have been logged in and will be redirected")
+                toast.dismiss();
+                const toastId = toast.success("Login Successful")
                 return;
             }
         } catch (error) {

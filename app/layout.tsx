@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import "./globals.css";
 import ProgressBar from "@/components/ui/progressbar";
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({
   children,
@@ -12,6 +13,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ProgressBar></ProgressBar>
+        <Toaster 
+          position = "top-center"
+          toastOptions={
+            {
+              duration: 5000
+            }
+          }
+        />
         <div className="flex flex-col items-center pt-10">
             <Image
                 className="min-w-auto"
