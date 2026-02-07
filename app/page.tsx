@@ -1,8 +1,7 @@
 "use client";
-import Image from "next/image";
 import LoginForm from "./landing/loginform";
 
-export default function Home() {
+export default function Landing() {
   return (
     <div>
       <LoginForm></LoginForm>

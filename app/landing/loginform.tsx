@@ -88,16 +88,18 @@ const LoginForm: React.FC = () => {
             if (response.ok != true) {
                 toast.dismiss();
                 const toastId = toast.error("Error")
+                navigate("/error")
                 return;
             }
 
             if (response.status === 200) {
                 toast.dismiss();
                 const toastId = toast.success("Login Successful")
+                navigate("/homepage")
                 return;
             }
         } catch (error) {
-            console.log("This is a random error part 2")
+            navigate("/error")
             return;
         }
     }
