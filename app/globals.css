@@ -24,7 +24,7 @@ body {
 }
 
 #nprogress .bar {
-  background: #ffffff !important; /* Force green color with !important */
+  background: #ffffff !important; /* Force white color with !important */
   position: fixed;
   z-index: 9999;
   top: 0;
