@@ -1,35 +1,60 @@
 'use client';
-import { useEffect, useState } from 'react';
 
-export default function HumidityDisplay() {
-  const [rh, setRh] = useState(null);
+import { useEffect, useState } from 'react';
+import {
+  LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer
+} from 'recharts';
+
+export default function TempDisplay() {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        // We fetch from our OWN API route now
         const res = await fetch('/api/humidity_sensor');
-        const data = await res.json();
-        
-        // Adafruit returns an array, we want the value of the first item
-        if (data && data.length > 0) {
-            setRh(data[0].value);
-        }
+        const json = await res.json();
+
+        setData(json); // already formatted
       } catch (err) {
         console.error("Error fetching data:", err);
       }
     }
 
     fetchData();
-    // Optional: Set up an interval to poll every 30 seconds
-    const interval = setInterval(fetchData, 30000);
+
+    const interval = setInterval(fetchData, 10000);
     return () => clearInterval(interval);
   }, []);
 
+  const currentRh =
+    data.length > 0 ? data[data.length - 1].rh : null;
+
   return (
     <div className="p-4 border rounded-lg shadow-sm">
-      <h2 className="text-lg font-semibold">SHT145 RH</h2>
-      <p className="text-3xl font-mono">{rh ? `${rh}°C` : 'Loading...'}</p>
+      <h2 className="text-lg font-semibold">SHT45 Humidity</h2>
+
+      {/* Current value */}
+      <p className="text-3xl font-mono mb-4">
+        {currentRh !== null ? `${currentRh}%` : 'Loading...'}
+      </p>
+
+      {/* Graph */}
+      <div style={{ width: '90%', height: 300 }}>
+        <ResponsiveContainer>
+          <LineChart data={data}>
+            <CartesianGrid stroke="#000000" strokeDasharray="3 3" />
+            <XAxis dataKey="time" stroke='#ffffff'/>
+            <YAxis domain={['auto', 'auto']} stroke="#ffffff"/>
+            <Tooltip />
+            <Line
+              type="monotone"
+              dataKey="rh"
+              stroke="#00ff00"
+              dot={true}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
