@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(
+    req: Request,
+    { params }: { params: Promise<{ feed: string }> }
+) {
+    const { feed } = await params;
     const ADAFRUIT_KEY = process.env.ADAFRUIT_KEY
-    const url = 'https://io.adafruit.com/api/v2/SustaingineeringElec/feeds/temperature-sht45/data?limit=20';
+    const url = `https://io.adafruit.com/api/v2/SustaingineeringElec/feeds/${feed}/data?limit=20`;
 
     try {
         const res = await fetch(url, {
@@ -18,7 +22,7 @@ export async function GET() {
 
         const rawData = await res.json();
         const data = rawData.map((entry: any) => ({
-            temp: parseFloat(entry.value),
+            value: parseFloat(entry.value),
             time: new Date(entry.created_at).toLocaleTimeString()
         }))
         .reverse(); // Reverse to have oldest first
@@ -27,4 +31,3 @@ export async function GET() {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
-
