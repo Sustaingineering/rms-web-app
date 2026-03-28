@@ -13,6 +13,9 @@ export default function Home() {
         <div>
             <SensorDisplay title="SHT45 Humidity" unit="%" feed="rh-sht45" color="#00ff00"></SensorDisplay>
         </div>
+        <div>
+            <SensorDisplay title="Wind Speed" unit="m/s" feed="wind-speed" color="#caf0f8"></SensorDisplay>
+        </div>
     </div>
     
   );
