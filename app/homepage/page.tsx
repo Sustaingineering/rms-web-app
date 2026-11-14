@@ -59,57 +59,61 @@ export default function Home() {
     
     return (
     <>
-        <div className="Summary">
-            <h1>Last Readings</h1>
+        <section className="summary">
+            <h1 className="summary-title">Summary</h1>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div>
-                    <h2>Temperature</h2>
-                    <p>{latestTemperature !== null ? `${latestTemperature} °C` : "Loading..."}</p>
-                </div>
-
-                <div>
-                    <h2>Pressure</h2>
-                    <p>{latestPressure !== null ? `${latestPressure} hPa` : "Loading..."}</p>
-                </div>
-
-                <div>
-                    <h2>Humidity</h2>
-                    <p>{latestHumidity !== null ? `${latestHumidity} %` : "Loading..."}</p>
-                </div>
-
-                <div>
-                    <h2>Wind Speed</h2>
-                    <p>{latestWindSpeed !== null ? `${latestWindSpeed} m/s` : "Loading..."}</p>
+            <div className="summary-card">
+                <h2>Last readings</h2>
+                
+                <div className="summary-readings">
+                    <p>
+                        Wind Speed: 
+                        <span>{latestWindSpeed !== null ? `${latestWindSpeed} m/s` : "--"}</span>
+                    </p>
+                    
+                    <p>
+                        Temperature:
+                        <span>{latestTemperature !== null ? `${latestTemperature} °C` : "--"}</span>
+                    </p>
+                    
+                    <p>
+                        Humidity:
+                        <span>{latestHumidity !== null ? `${latestHumidity} %` : "--"}</span>
+                    </p>
+                    
+                    <p>
+                        Pressure:
+                        <span>{latestPressure !== null ? `${latestPressure} hPa` : "--"}</span>
+                    </p>
                 </div>
             </div>
-        </div>
+        </section>
         
         <div className="sensors">
             <SensorDisplay
                 title="SHT45 Temperature"
                 unit="°C"
                 data={sensorData.temperature}
-                color="#ff0000"
+                color="#E05252"
             />
 
             <SensorDisplay
                 title="DPS310 Pressure"
                 unit="hPa"
                 data={sensorData.pressure}
-                color="#0000ff"
+                color="#365FC9"
             />
             <SensorDisplay
                 title="SHT45 Humidity"
                 unit="%"
                 data={sensorData.humidity}
-                color="#00ff00"
+                color="#176B50"
             />
             <SensorDisplay
                 title="Wind Speed"
                 unit="m/s"
                 data={sensorData.windSpeed}
-                color="#caf0f8"
+                color="#7651B5"
             />
         </div>
     </>

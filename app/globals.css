@@ -44,3 +44,106 @@ body {
   opacity: 1.0;
   transform: rotate(3deg) translate(0px, -4px); 
 }
+
+/* Overall summary section */
+.summary {
+    background-color: #79b4ab;
+    padding: 20px;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #254241;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+  
+/* Main heading */
+.summary-title {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+  
+/* Last readings card */
+.summary-card {
+    background-color: #93c8c0;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+  
+/* Card heading */
+.summary-card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+  
+/* Two-column layout */
+.summary-readings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 30px;
+}
+
+/* Individual readings */
+.summary-readings p {
+    font-size: 18px;
+    line-height: 1.5;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+}
+
+/* Sensor values */
+.summary-readings span {
+    font-weight: 600;
+}
+
+.sensors {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Sensor card */
+.sensor-card {
+    width: 100%;
+    border: 1px solid #254241;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    margin: 0;
+    padding: auto;
+}
+
+/* Graph title */
+.sensor-header {
+    background-color: #79b4ab;
+    padding: 15px 20px;
+    color: white;
+}
+
+.sensor-header h2 {
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Graph background */
+.sensor-content {
+    background-color: #79b4ab;
+    padding: 20px;
+    color: rgb(86, 54, 54);
+}
+
+/* Current sensor reading */
+.sensor-value {
+    font-size: 30px;
+    font-family: monospace;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
