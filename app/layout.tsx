@@ -21,16 +21,6 @@ export default function RootLayout({
             }
           }
         />
-        <div className="flex flex-col items-center pt-10">
-            <Image
-                className="min-w-auto"
-                src="/banner_rms.svg"
-                alt="Next.js logo"
-                width={600}
-                height={300}
-                priority
-              />
-        </div>
         {children}
       </body>
     </html>

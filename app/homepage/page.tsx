@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import SensorDisplay from "./components/sensors";
+import Image from "next/image";
 
 export default function Home() {
     const [sensorData, setSensorData] = useState({
@@ -59,62 +60,77 @@ export default function Home() {
     
     return (
     <>
-        <section className="summary">
-            <h1 className="summary-title">Summary</h1>
+        <div className="dashboard-layout">
+            <aside className="sidebar">
+                <Image
+                src="/RMS_banner.png"
+                alt="Remote Monitoring System"
+                width={500}
+                height={200}
+                className="sidebar-image"
+                priority
+                />
+            </aside>
 
-            <div className="summary-card">
-                <h2>Last readings</h2>
-                
-                <div className="summary-readings">
-                    <p>
-                        Wind Speed: 
-                        <span>{latestWindSpeed !== null ? `${latestWindSpeed} m/s` : "--"}</span>
-                    </p>
-                    
-                    <p>
-                        Temperature:
-                        <span>{latestTemperature !== null ? `${latestTemperature} °C` : "--"}</span>
-                    </p>
-                    
-                    <p>
-                        Humidity:
-                        <span>{latestHumidity !== null ? `${latestHumidity} %` : "--"}</span>
-                    </p>
-                    
-                    <p>
-                        Pressure:
-                        <span>{latestPressure !== null ? `${latestPressure} hPa` : "--"}</span>
-                    </p>
+            <main className="dashboard-main">
+                <section className="summary">
+                    <h1 className="summary-title">Summary</h1>
+
+                    <div className="summary-card">
+                        <h2>Last readings</h2>
+                        
+                        <div className="summary-readings">
+                            <p>
+                                Wind Speed: 
+                                <span>{latestWindSpeed !== null ? `${latestWindSpeed} m/s` : "--"}</span>
+                            </p>
+                            
+                            <p>
+                                Temperature:
+                                <span>{latestTemperature !== null ? `${latestTemperature} °C` : "--"}</span>
+                            </p>
+                            
+                            <p>
+                                Humidity:
+                                <span>{latestHumidity !== null ? `${latestHumidity} %` : "--"}</span>
+                            </p>
+                            
+                            <p>
+                                Pressure:
+                                <span>{latestPressure !== null ? `${latestPressure} hPa` : "--"}</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <div className="sensors">
+                    <SensorDisplay
+                        title="SHT45 Temperature"
+                        unit="°C"
+                        data={sensorData.temperature}
+                        color="#E05252"
+                    />
+
+                    <SensorDisplay
+                        title="DPS310 Pressure"
+                        unit="hPa"
+                        data={sensorData.pressure}
+                        color="#365FC9"
+                    />
+                    <SensorDisplay
+                        title="SHT45 Humidity"
+                        unit="%"
+                        data={sensorData.humidity}
+                        color="#176B50"
+                    />
+                    <SensorDisplay
+                        title="Wind Speed"
+                        unit="m/s"
+                        data={sensorData.windSpeed}
+                        color="#7651B5"
+                    />
                 </div>
-            </div>
-        </section>
-        
-        <div className="sensors">
-            <SensorDisplay
-                title="SHT45 Temperature"
-                unit="°C"
-                data={sensorData.temperature}
-                color="#E05252"
-            />
-
-            <SensorDisplay
-                title="DPS310 Pressure"
-                unit="hPa"
-                data={sensorData.pressure}
-                color="#365FC9"
-            />
-            <SensorDisplay
-                title="SHT45 Humidity"
-                unit="%"
-                data={sensorData.humidity}
-                color="#176B50"
-            />
-            <SensorDisplay
-                title="Wind Speed"
-                unit="m/s"
-                data={sensorData.windSpeed}
-                color="#7651B5"
-            />
+            </main>
         </div>
     </>
   );
