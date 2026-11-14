@@ -1,31 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer
 } from 'recharts';
 
-export default function SensorDisplay({ title, unit, feed, color}) {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch(`/api/sensors/${feed}`);
-        const json = await res.json();
-
-        setData(json); // already formatted
-      } catch (err) {
-        console.error("Error fetching data:", err);
-      }
-    }
-
-    fetchData();
-
-    const interval = setInterval(fetchData, 10000);
-    return () => clearInterval(interval);
-  }, []);
-
+export default function SensorDisplay({ title, unit, data, color}) {
   const currentValue =
     data.length > 0 ? data[data.length - 1].value : null;
 
@@ -46,6 +25,7 @@ export default function SensorDisplay({ title, unit, feed, color}) {
             <XAxis dataKey="time" stroke='#ffffff'/>
             <YAxis domain={['auto', 'auto']} stroke="#ffffff"/>
             <Tooltip />
+
             <Line
               type="monotone"
               dataKey="value"
