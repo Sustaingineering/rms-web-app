@@ -6,7 +6,7 @@ export async function GET(
 ) {
     const { feed } = await params;
     const ADAFRUIT_KEY = process.env.ADAFRUIT_KEY
-    const url = `https://io.adafruit.com/api/v2/SustaingineeringElec/feeds/${feed}/data?limit=20`;
+    const url = `https://io.adafruit.com/api/v2/SustaingineeringElec/feeds/${feed}/data?limit=15`;
 
     try {
         const res = await fetch(url, {
@@ -23,7 +23,6 @@ export async function GET(
         const rawData = await res.json();
         const data = rawData.map((entry: any) => ({
             value: parseFloat(entry.value),
-            time: new Date(entry.created_at).toLocaleTimeString(),
             timestamp: entry.created_at
         }))
         .reverse(); // Reverse to have oldest first
