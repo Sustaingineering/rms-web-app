@@ -44,9 +44,9 @@ export default function Home() {
                 console.error("Error fetching sensor data:", err);
             }
         }
-
+        // Fetch data when we first start the browser
         fetchAllData();
-
+        // Fetch data every 1 minute afterwards
         const interval = setInterval(fetchAllData, 60 * 1000);
 
         return () => clearInterval(interval);
@@ -105,26 +105,26 @@ export default function Home() {
 
                 <div className="sensors">
                     <SensorDisplay
-                        title="Temperature"
+                        title="Temperature (°C)"
                         unit="°C"
                         data={sensorData.temperature}
                         color="#E05252"
                     />
 
                     <SensorDisplay
-                        title="Air Pressure"
+                        title="Air Pressure (hPa)"
                         unit="hPa"
                         data={sensorData.pressure}
                         color="#365FC9"
                     />
                     <SensorDisplay
-                        title="Humidity"
+                        title="Humidity (%)"
                         unit="%"
                         data={sensorData.humidity}
                         color="#176B50"
                     />
                     <SensorDisplay
-                        title="Wind Speed"
+                        title="Wind Speed (m/s)"
                         unit="m/s"
                         data={sensorData.windSpeed}
                         color="#7651B5"
