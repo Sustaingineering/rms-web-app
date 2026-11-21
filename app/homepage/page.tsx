@@ -12,7 +12,7 @@ export default function Home() {
     const latestHumidity = sensorData.humidity.at(-1)?.value ?? null;
     const latestWindSpeed = sensorData.windSpeed.at(-1)?.value ?? null;
     const latestSoilMoisture1 = sensorData.soilMoisture1.at(-1)?.value ?? null;
-    const latestSoilMoisture2 = sensorData.soilMoisture1.at(-1)?.value ?? null;
+    const latestSoilMoisture2 = sensorData.soilMoisture2.at(-1)?.value ?? null;
 
     //Find the most recent reading accross all four sensors
     const allReadings = [
