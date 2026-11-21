@@ -9,6 +9,30 @@ export default function Sidebar() {
 
     return (
         <aside className="sidebar">
+            <nav className="sidebar-nav">
+                <Link
+                    href="/homepage"
+                    className={
+                        pathname === "/homepage"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }
+                >
+                    Summary
+                </Link>
+
+                <Link
+                    href="/homepage/outdoor_station"
+                    className={
+                        pathname === "/homepage/outdoor_station"
+                            ? "nav-link active"
+                            : "nav-link"
+                    }
+                >
+                    Outdoor Station
+                </Link>
+            </nav>
+
             <Image
                 src="/RMS_banner.png"
                 alt="Remote Monitoring System"
@@ -17,30 +41,6 @@ export default function Sidebar() {
                 className="sidebar-image"
                 priority
             />
-
-            <nav className="sidebar-nav">
-                <Link
-                    href="/hompage"
-                    className={
-                        pathname === "/homepage"
-                            ? "nav-link activate"
-                            : "nav-link"
-                    }
-                >
-                    Summary
-                </Link>
-
-                <Link
-                    href="/hompage/graphs"
-                    className={
-                        pathname === "/homepage/graphs"
-                            ? "nav-link activate"
-                            : "nav-link"
-                    }
-                >
-                    Outdoor Station
-                </Link>
-            </nav>
         </aside>
     );
 }
