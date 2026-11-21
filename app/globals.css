@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #5e6f70;
-  --foreground: #254241;
+  --background: #99b6b8;
+  --foreground: #3c6261;
 }
 
 @theme inline {
@@ -163,7 +163,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: #79b4ab;
+    background-color: #93c8c0;
     border-right: 1px solid #254241;
 }
 

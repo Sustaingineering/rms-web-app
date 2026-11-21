@@ -47,7 +47,7 @@ export default function Home() {
 
         fetchAllData();
 
-        const interval = setInterval(fetchAllData, 10000);
+        const interval = setInterval(fetchAllData, 60 * 1000);
 
         return () => clearInterval(interval);
     }, []);
@@ -105,20 +105,20 @@ export default function Home() {
 
                 <div className="sensors">
                     <SensorDisplay
-                        title="SHT45 Temperature"
+                        title="Temperature"
                         unit="°C"
                         data={sensorData.temperature}
                         color="#E05252"
                     />
 
                     <SensorDisplay
-                        title="DPS310 Pressure"
+                        title="Air Pressure"
                         unit="hPa"
                         data={sensorData.pressure}
                         color="#365FC9"
                     />
                     <SensorDisplay
-                        title="SHT45 Humidity"
+                        title="Humidity"
                         unit="%"
                         data={sensorData.humidity}
                         color="#176B50"
