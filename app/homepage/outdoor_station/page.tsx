@@ -12,7 +12,7 @@ export default function OutdoorStation() {
             <Sidebar />
 
             <main className="dashboard-main">
-                <h1 className="summary-title">Outdoor Station Graphs</h1>
+                <h1 className="outdoor-title">Outdoor Station Graphs</h1>
 
                 <section className="sensors">
                     <SensorDisplay
