@@ -23,7 +23,8 @@ export async function GET(
         const rawData = await res.json();
         const data = rawData.map((entry: any) => ({
             value: parseFloat(entry.value),
-            time: new Date(entry.created_at).toLocaleTimeString()
+            time: new Date(entry.created_at).toLocaleTimeString(),
+            timestamp: entry.created_at
         }))
         .reverse(); // Reverse to have oldest first
         return NextResponse.json(data);

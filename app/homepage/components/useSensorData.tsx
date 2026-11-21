@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export type SensorReading = {
     value: number;
     time: string;
+    timestamp: string;
 };
 
 export type SensorData = {
