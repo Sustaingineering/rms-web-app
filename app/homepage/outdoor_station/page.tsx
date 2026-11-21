@@ -42,6 +42,20 @@ export default function OutdoorStation() {
                         data={sensorData.windSpeed}
                         color="#7651B5"
                     />
+
+                    <SensorDisplay
+                        title="Soil Moisture 1 (%)"
+                        unit="%"
+                        data={sensorData.soilMoisture1}
+                        color="#C5A12D"
+                    />
+
+                    <SensorDisplay
+                        title="Soil Moisture 2 (%)"
+                        unit="%"
+                        data={sensorData.soilMoisture2}
+                        color="#99704F"
+                    />
                 </section>
             </main>
         </div>

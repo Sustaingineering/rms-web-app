@@ -11,13 +11,17 @@ export default function Home() {
     const latestPressure = sensorData.pressure.at(-1)?.value ?? null;
     const latestHumidity = sensorData.humidity.at(-1)?.value ?? null;
     const latestWindSpeed = sensorData.windSpeed.at(-1)?.value ?? null;
+    const latestSoilMoisture1 = sensorData.soilMoisture1.at(-1)?.value ?? null;
+    const latestSoilMoisture2 = sensorData.soilMoisture1.at(-1)?.value ?? null;
 
     //Find the most recent reading accross all four sensors
     const allReadings = [
         ...sensorData.temperature,
         ...sensorData.pressure,
         ...sensorData.humidity,
-        ...sensorData.windSpeed
+        ...sensorData.windSpeed,
+        ...sensorData.soilMoisture1,
+        ...sensorData.soilMoisture2
     ];
 
     const latestReading = allReadings.reduce((latest, current) => {
@@ -33,14 +37,14 @@ export default function Home() {
         ? new Date(latestReading.timestamp)
         : null;
 
-    // Server is On if the latest reading is less than 2 hours old
+    // Server is On if the latest reading is less than 1 hour old
     const age = lastUpdated
         ? Date.now() - lastUpdated.getTime()
         : null;
 
     const isServerOn = age !== null &&
         age >= 0 &&
-        age < 2 * 60 * 60 * 1000; 
+        age < 1 * 60 * 60 * 1000; 
     
     return (
         <div className="dashboard-layout">
@@ -97,6 +101,16 @@ export default function Home() {
                                 Pressure:
                                 <span>{latestPressure !== null ? `${latestPressure} hPa` : "--"}</span>
                             </p>
+
+                            <p>
+                                Soil Moisture 1:
+                                <span>{latestSoilMoisture1 !== null ? `${latestSoilMoisture1} %` : "--"}</span>
+                            </p>
+
+                            <p>
+                                Soil Moisture 2:
+                                <span>{latestSoilMoisture2 !== null ? `${latestSoilMoisture2} %` : "--"}</span>
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -126,6 +140,18 @@ export default function Home() {
                         unit="m/s"
                         data={sensorData.windSpeed}
                         color="#7651B5"
+                    />
+                    <SensorDisplay
+                        title="Soil Moisture 1 (%)"
+                        unit="%"
+                        data={sensorData.soilMoisture1}
+                        color="#C5A12D"
+                    />
+                    <SensorDisplay
+                        title="Soil Moisture 2 (%)"
+                        unit="%"
+                        data={sensorData.soilMoisture2}
+                        color="#99704F"
                     />
                 </section>
             </main>

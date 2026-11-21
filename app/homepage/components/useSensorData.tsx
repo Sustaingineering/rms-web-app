@@ -13,6 +13,8 @@ export type SensorData = {
     pressure: SensorReading[];
     humidity: SensorReading[];
     windSpeed: SensorReading[];
+    soilMoisture1: SensorReading[];
+    soilMoisture2: SensorReading[]
 };
 
 export default function useSensorData() {
@@ -21,6 +23,8 @@ export default function useSensorData() {
         pressure: [],
         humidity: [],
         windSpeed: [],
+        soilMoisture1: [],
+        soilMoisture2: [],
     });
 
     useEffect(() => {
@@ -29,6 +33,8 @@ export default function useSensorData() {
             { key: "pressure", feed: "pressure-dps310" },
             { key: "humidity", feed: "rh-sht45" },
             { key: "windSpeed", feed: "wind-speed" },
+            { key: "soilMoisture1", feed: "soil-moisture-1" },
+            { key: "soilMoisture2", feed: "soil-moisture-2" },
         ] as const;
 
         async function fetchAllData() {

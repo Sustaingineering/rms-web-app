@@ -225,7 +225,7 @@ body {
     padding: 25px;
 }
 
-/* Summary page: 2 columns and 2 rows */
+/* Summary page: 2 columns and 3 rows */
 .sensors-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
