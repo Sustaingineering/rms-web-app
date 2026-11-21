@@ -105,15 +105,15 @@ const LoginForm: React.FC = () => {
     }
 
     return (
-        <Card className = "mx-auto max-w-sm font-sans border-0 bg-white">
-            <CardHeader className = "space-y-1">
+        <Card className="w-full max-w-none mx-auto font-sans border-0 bg-white p-3">
+            <CardHeader className = "space-y-2">
                 <CardTitle className = "text-2xl font-bold flex justify-center">
                     Login
                 </CardTitle>
             </CardHeader>
             
             <CardContent>
-                <div className = "space-y-4">
+                <div className = "space-y-5">
                     <div className = "space-y-2">
                         <Label htmlFor="username" className="font-semibold">
                             Username

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #99b6b8;
+  --background: #92C8BF;
   --foreground: #3c6261;
 }
 
@@ -47,7 +47,7 @@ body {
 
 /* Overall summary section */
 .summary {
-    background-color: #79b4ab;
+    background-color: #2b514b;
     padding: 20px;
     color: white;
     width: 100%;
@@ -122,7 +122,7 @@ body {
 
 /* Graph title */
 .sensor-header {
-    background-color: #79b4ab;
+    background-color: #2b514b;
     padding: 15px 20px;
     color: white;
 }
@@ -135,7 +135,7 @@ body {
 
 /* Graph background */
 .sensor-content {
-    background-color: #79b4ab;
+    background-color: #2b514b;
     padding: 20px;
     color: rgb(86, 54, 54);
 }
@@ -167,7 +167,7 @@ body {
     padding: 25px 12px 15px;
     box-sizing: border-box;
     overflow: hidden;
-    background-color: #79b4ab;
+    background-color: #2b514b;
     border-right: 1px solid #254241;
 }
 
@@ -184,7 +184,7 @@ body {
     display: block;
     padding: 13px 12px;
 
-    color: #254241;
+    color: #ffffff;
     background-color: transparent;
 
     text-decoration: none;
@@ -244,4 +244,39 @@ body {
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 24px;
+}
+
+.landing-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.banner-container {
+    width: 150px;
+    height: min(25vh, 220px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.login-image {
+    display: block;
+    width: min(25vh, 220px);
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+    transform: rotate(90deg);
+}
+
+.login-form-container {
+    width: min(90vw, 420px);
+    flex-shrink: 0;
 }
