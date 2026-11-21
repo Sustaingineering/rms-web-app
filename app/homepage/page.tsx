@@ -1,76 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Sidebar from "./components/sidebar";
 import SensorDisplay from "./components/sensors";
-import Image from "next/image";
+import useSensorData from "./components/useSensorData";
 
 export default function Home() {
-    const [sensorData, setSensorData] = useState({
-        temperature: [],
-        pressure: [],
-        humidity: [],
-        windSpeed: [],
-    });
+    const sensorData = useSensorData();
 
-    useEffect(() => {
-        const feeds = [
-            { key: "temperature", feed: "temperature-sht45" },
-            { key: "pressure", feed: "pressure-dps310" },
-            { key: "humidity", feed: "rh-sht45" },
-            { key: "windSpeed", feed: "wind-speed" },
-        ];
-
-        async function fetchAllData() {
-            try {
-                const results = await Promise.all(
-                    feeds.map(async ({ key, feed }) => {
-                        const res = await fetch(`/api/sensors/${feed}`);
-                        const json = await res.json();
-
-                        return { key, data: json };
-                    })
-                );
-
-                setSensorData((prev) => {
-                    const updated = { ...prev };
-
-                    results.forEach(({ key, data }) => {
-                        updated[key] = data;
-                    });
-
-                    return updated;
-                });
-            } catch (err) {
-                console.error("Error fetching sensor data:", err);
-            }
-        }
-        // Fetch data when we first start the browser
-        fetchAllData();
-        // Fetch data every 1 minute afterwards
-        const interval = setInterval(fetchAllData, 60 * 1000);
-
-        return () => clearInterval(interval);
-    }, []);
-
-    // Get the lastest reading from each sensor
     const latestTemperature = sensorData.temperature.at(-1)?.value ?? null;
     const latestPressure = sensorData.pressure.at(-1)?.value ?? null;
     const latestHumidity = sensorData.humidity.at(-1)?.value ?? null;
     const latestWindSpeed = sensorData.windSpeed.at(-1)?.value ?? null;
     
     return (
-    <>
         <div className="dashboard-layout">
-            <aside className="sidebar">
-                <Image
-                src="/RMS_banner.png"
-                alt="Remote Monitoring System"
-                width={500}
-                height={200}
-                className="sidebar-image"
-                priority
-                />
-            </aside>
+            <Sidebar />
 
             <main className="dashboard-main">
                 <section className="summary">
@@ -103,7 +47,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                <div className="sensors">
+                <section className="sensors sensors-grid">
                     <SensorDisplay
                         title="Temperature (°C)"
                         unit="°C"
@@ -129,9 +73,8 @@ export default function Home() {
                         data={sensorData.windSpeed}
                         color="#7651B5"
                     />
-                </div>
+                </section>
             </main>
         </div>
-    </>
-  );
+    );
 }
